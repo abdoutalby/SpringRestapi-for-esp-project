@@ -24,6 +24,16 @@ public class DeviceService {
     public List<Device> getAllDevices(){
       return repo.findAll();
     }
+
+    public ResponseEntity delete( Long device){
+        if(repo.existsById(device)){
+            repo.delete(repo.getById(device));
+            return  new ResponseEntity(new Json("deleted"),HttpStatus.OK);
+        }else {
+            return new ResponseEntity(new Json(  " device does not exist"),HttpStatus.OK);
+        }
+    }
+
     public  ResponseEntity add(Device device){
         if (repo.existsById(device.getId())){
             return new ResponseEntity (new Json(  " device already exist"), HttpStatus.CONFLICT);
