@@ -28,7 +28,7 @@ public class Position {
     private Float xm;
     private Float ym;
     private Float zm;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.SAVE_UPDATE)
     @JoinColumn(name="device" , referencedColumnName = "id")
     @JsonIgnore
     private Device device;
