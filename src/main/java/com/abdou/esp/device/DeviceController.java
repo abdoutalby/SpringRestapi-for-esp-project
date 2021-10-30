@@ -27,4 +27,8 @@ public class DeviceController {
         return this.service.add(device);
     }
 
+    @DeleteMapping
+    public ResponseEntity delete(@PathVariable Long id){
+        return  this.service.delete(id);
+    }
 }
