@@ -34,15 +34,15 @@ public class DeviceService {
         }
     }
 
+  
+    
     public  ResponseEntity add(Device device){
         if (repo.existsById(device.getId())){
-            return new ResponseEntity (new Json(  " device already exist"), HttpStatus.CONFLICT);
-        }else
-        {
-            LocalTime time = LocalTime.now();
-         device.setStart(time.format( DateTimeFormatter.ofPattern("HH:mm:ss")));
-        return new ResponseEntity( repo.save(device) ,HttpStatus.CREATED) ;
-
+            return new ResponseEntity ("device already exist" , HttpStatus.CONFLICT);
+        }else{
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd.HH:mm:ss");  
+            device.setStart(dtf.format(LocalDateTime.now()));
+            return new ResponseEntity( repo.save(device) ,HttpStatus.CREATED) ;
         }
     }
 }
